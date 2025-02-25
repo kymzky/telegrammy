@@ -1,0 +1,29 @@
+---
+shellPath: "/bin/bash"
+pollInterval: 5
+
+responseJobs:
+
+  # Simple reponse job
+  - trigger: "hello"
+    message: "world!"
+
+  # Get the current telegrammy configuration
+  - trigger: "configuration"
+    command: "cat $TELEGRAMMY_CONFIG_PATH"
+    message: "```\n%s```"
+    parseMode: MarkdownV2
+    escapeCharacters:
+      - "`"
+
+  # Simple way to delete the current conversation context with ChatGPT
+  - trigger: "reset"
+    command: "rm -f $CHAT_GPT_CONVERSATION_PATH"
+    message: "ChatGPT conversation reset"
+
+cronJobs:
+
+  # Simple cron job
+  - schedule: "20 16 * * *"
+    message: "[Open this link](https://example.com)"
+    parseMode: MarkdownV2

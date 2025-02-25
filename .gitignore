@@ -1,0 +1,6 @@
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+/example_config/conversation
