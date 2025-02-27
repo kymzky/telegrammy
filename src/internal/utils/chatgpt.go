@@ -23,7 +23,7 @@ func GetChatGPTResponse(message string) string {
 		Content: message,
 	}
 	conversation = append(conversation, userMessage)
-	client := openai.NewClient(config.GetChatGptToken())
+	client := openai.NewClient(config.GetOpenAiApiKey())
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{

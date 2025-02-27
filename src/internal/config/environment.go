@@ -10,7 +10,7 @@ const (
 	telegramBotToken        = "TELEGRAM_BOT_TOKEN"
 	telegramChatId          = "TELEGRAM_CHAT_ID"
 	telegrammyConfigPath    = "TELEGRAMMY_CONFIG_PATH"
-	chatGptToken            = "OPENAI_API_KEY"
+	openAiApiKey            = "OPENAI_API_KEY"
 	chatGptConversationPath = "CHAT_GPT_CONVERSATION_PATH"
 )
 
@@ -26,8 +26,8 @@ func GetTelegrammyConfigPath() string {
 	return getStringValue(telegrammyConfigPath)
 }
 
-func GetChatGptToken() string {
-	return getStringValue(chatGptToken)
+func GetOpenAiApiKey() string {
+	return getStringValue(openAiApiKey)
 }
 
 func GetChatGptConversationPath() string {
