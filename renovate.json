@@ -6,9 +6,10 @@
   "baseBranches": ["develop"],
   "packageRules": [
     {
-      "matchDatasources": ["repology"],
+      "matchDatasources": ["regex", "repology"],
       "matchPackageNames": ["alpine/bash"],
-      "versioning": "loose"
+      "versioning": "loose",
+      "enabled": true
     }
   ]
 }
