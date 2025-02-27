@@ -1,7 +1,6 @@
-FROM alpine:3.21.3
-RUN apk add --no-cache \
-  bash=5.2.37-r0 \
-  go=1.23.6-r0
+FROM golang:1.24.0-alpine
+RUN apk add --no-cache --upgrade \
+  bash=5.2.37-r0
 WORKDIR /app
 COPY . .
 WORKDIR /app/cmd/telegrammy
