@@ -16,7 +16,7 @@ telegrammy is configured using environment variables and a YAML file.
 | `TELEGRAMMY_CONFIG_PATH`        | Path to the YAML configuration file              |
 | `TELEGRAM_CHAT_ID`              | Telegram chat ID for the bot                     |
 | `TELEGRAM_BOT_TOKEN`            | Telegram bot API token                           |
-| `CHAT_GPT_TOKEN`                | API token for ChatGPT integration                |
+| `OPENAI_API_KEY`                | OpenAI API key for ChatGPT usage                 |
 | `CHAT_GPT_CONVERSATION_PATH`    | Path to the ChatGPT conversation file            |
 
 ### YAML Configuration

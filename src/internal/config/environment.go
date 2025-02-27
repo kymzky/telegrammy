@@ -10,7 +10,7 @@ const (
 	telegramBotToken        = "TELEGRAM_BOT_TOKEN"
 	telegramChatId          = "TELEGRAM_CHAT_ID"
 	telegrammyConfigPath    = "TELEGRAMMY_CONFIG_PATH"
-	chatGptToken            = "CHAT_GPT_TOKEN"
+	chatGptToken            = "OPENAI_API_KEY"
 	chatGptConversationPath = "CHAT_GPT_CONVERSATION_PATH"
 )
 
