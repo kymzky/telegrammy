@@ -44,7 +44,14 @@ their trigger mechanism:
 
 For an example YAML configuration, see [example_config/config.yaml](./example_config/config.yaml).
 
-### Build and run
+## Build and run
 
 The simplest way is to install [Task](https://taskfile.dev/) and use the [Taskfile.yaml](./Taskfile.yaml)
 in this repository.
+
+## Build a new release
+
+The [release.yaml](./.github/workflows/release.yaml) workflow is triggered by
+tags with a leading "v" (e.g. `v1.0.0`) and builds and uploads a new Docker image
+of telegrammy. For an even cleaner process, I recommend creating the new tag via
+Github's [release page](https://github.com/kymzky/telegrammy/releases/new).
