@@ -19,6 +19,11 @@ func GetShellPath() string {
 	return config.ShellPath
 }
 
+func GetInitCommand() string {
+	config := getConfig()
+	return config.InitCommand
+}
+
 func GetPollInterval() int {
 	config := getConfig()
 	return config.PollInterval

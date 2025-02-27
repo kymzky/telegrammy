@@ -1,15 +1,17 @@
 ---
 shellPath: "/bin/bash"
+# Use this for example to add additional packages to extend telegrammy's possibilties
+initCommand: "apk add git ansible"
 pollInterval: 5
 
 responseJobs:
 
   # Simple reponse job
-  - trigger: "hello"
+  - trigger: "Hello"
     message: "world!"
 
   # Get the current telegrammy configuration
-  - trigger: "configuration"
+  - trigger: "Configuration"
     command: "cat $TELEGRAMMY_CONFIG_PATH"
     message: "```\n%s```"
     parseMode: MarkdownV2
@@ -17,7 +19,7 @@ responseJobs:
       - "`"
 
   # Simple way to delete the current conversation context with ChatGPT
-  - trigger: "reset"
+  - trigger: "Reset"
     command: "rm -f $CHAT_GPT_CONVERSATION_PATH"
     message: "ChatGPT conversation reset"
 
