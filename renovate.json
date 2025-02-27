@@ -3,13 +3,5 @@
   "extends": [
     "config:recommended"
   ],
-  "baseBranches": ["develop"],
-  "packageRules": [
-    {
-      "matchDatasources": ["regex", "repology"],
-      "matchPackageNames": ["alpine/bash"],
-      "versioning": "loose",
-      "enabled": true
-    }
-  ]
+  "baseBranches": ["develop"]
 }
