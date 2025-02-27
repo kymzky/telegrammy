@@ -4,9 +4,12 @@ go 1.23.6
 
 require github.com/go-telegram-bot-api/telegram-bot-api/v5 v5.5.1
 
-require github.com/robfig/cron/v3 v3.0.0
+require github.com/robfig/cron/v3 v3.0.1
 
-require gopkg.in/yaml.v3 v3.0.1
+require (
+	github.com/sashabaranov/go-openai v1.20.5
+	gopkg.in/yaml.v3 v3.0.1
+)
 
 require (
 	github.com/bytedance/sonic v1.11.3 // indirect
@@ -52,7 +55,6 @@ require (
 	github.com/remeh/sizedwaitgroup v1.0.0 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/rs/zerolog v1.32.0 // indirect
-	github.com/sashabaranov/go-openai v1.20.5 // indirect
 	github.com/sensepost/gowitness v0.0.0-20240319080755-7210c85fb3b9 // indirect
 	github.com/spf13/cobra v1.8.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
