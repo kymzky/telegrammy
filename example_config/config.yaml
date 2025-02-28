@@ -12,7 +12,7 @@ responseJobs:
 
   # Get the current telegrammy configuration
   - trigger: "Configuration"
-    command: "cat $TELEGRAMMY_CONFIG_PATH"
+    command: "cat /etc/telegrammy/config.yaml"
     message: "```\n%s```"
     parseMode: MarkdownV2
     escapeCharacters:
@@ -20,7 +20,7 @@ responseJobs:
 
   # Simple way to delete the current conversation context with ChatGPT
   - trigger: "Reset"
-    command: "rm -f $CHAT_GPT_CONVERSATION_PATH"
+    command: "rm -f /etc/telegrammy/conversation"
     message: "ChatGPT conversation reset"
 
 cronJobs:

@@ -41,7 +41,7 @@ func GetCronJobs() []domain.CronJob {
 
 func getConfig() *domain.Config {
 	configOnce.Do(func() {
-		configPath := GetTelegrammyConfigPath()
+		configPath := GetConfigPath()
 		data, err := os.ReadFile(configPath)
 		if err != nil {
 			slog.Error("Failed to read config file.", "err", err, "configPath", configPath)

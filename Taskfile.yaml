@@ -25,11 +25,9 @@ tasks:
     cmds:
       - |
         docker run \
-          -e TELEGRAMMY_CONFIG_PATH="{{.TELEGRAMMY_CONFIG_PATH}}" \
-          -e TELEGRAM_CHAT_ID="{{.TELEGRAM_CHAT_ID}}" \
           -e TELEGRAM_BOT_TOKEN="{{.TELEGRAM_BOT_TOKEN}}" \
+          -e TELEGRAM_CHAT_ID="{{.TELEGRAM_CHAT_ID}}" \
           -e OPENAI_API_KEY="{{.OPENAI_API_KEY}}" \
-          -e CHAT_GPT_CONVERSATION_PATH="{{.CHAT_GPT_CONVERSATION_PATH}}" \
           -v "{{.CONFIG_DIR}}:/etc/telegrammy:z" \
           telegrammy
     silent: true

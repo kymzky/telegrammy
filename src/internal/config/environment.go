@@ -7,11 +7,9 @@ import (
 )
 
 const (
-	telegramBotToken        = "TELEGRAM_BOT_TOKEN"
-	telegramChatId          = "TELEGRAM_CHAT_ID"
-	telegrammyConfigPath    = "TELEGRAMMY_CONFIG_PATH"
-	openAiApiKey            = "OPENAI_API_KEY"
-	chatGptConversationPath = "CHAT_GPT_CONVERSATION_PATH"
+	telegramBotToken = "TELEGRAM_BOT_TOKEN"
+	telegramChatId   = "TELEGRAM_CHAT_ID"
+	openAiApiKey     = "OPENAI_API_KEY"
 )
 
 func GetTelegramBotToken() string {
@@ -22,16 +20,8 @@ func GetTelegramChatId() int64 {
 	return getInt64Value(telegramChatId)
 }
 
-func GetTelegrammyConfigPath() string {
-	return getStringValue(telegrammyConfigPath)
-}
-
 func GetOpenAiApiKey() string {
 	return getStringValue(openAiApiKey)
-}
-
-func GetChatGptConversationPath() string {
-	return getStringValue(chatGptConversationPath)
 }
 
 func getStringValue(key string) string {
