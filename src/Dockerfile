@@ -1,4 +1,4 @@
-FROM golang:1.24.0-alpine
+FROM golang:1.24.1-alpine
 # hadolint ignore=DL3018
 RUN apk add --no-cache bash
 WORKDIR /app
