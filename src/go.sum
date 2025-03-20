@@ -121,6 +121,8 @@ github.com/sashabaranov/go-openai v1.20.5 h1:Sab4nzBLtoyxm4jRqH9G9pkIh50WpBFacPT
 github.com/sashabaranov/go-openai v1.20.5/go.mod h1:lj5b/K+zjTSFxVLijLSTDZuP7adOgerWeFyZLUhAKRg=
 github.com/sashabaranov/go-openai v1.38.0 h1:hNN5uolKwdbpiqOn7l+Z2alch/0n0rSFyg4n+GZxR5k=
 github.com/sashabaranov/go-openai v1.38.0/go.mod h1:lj5b/K+zjTSFxVLijLSTDZuP7adOgerWeFyZLUhAKRg=
+github.com/sashabaranov/go-openai v1.38.1 h1:TtZabbFQZa1nEni/IhVtDF/WQjVqDgd+cWR5OeddzF8=
+github.com/sashabaranov/go-openai v1.38.1/go.mod h1:lj5b/K+zjTSFxVLijLSTDZuP7adOgerWeFyZLUhAKRg=
 github.com/sensepost/gowitness v0.0.0-20240319080755-7210c85fb3b9 h1:UTpLixgEcNPeu8C68caKUMet0b6MNz1BqF1Szocy6h4=
 github.com/sensepost/gowitness v0.0.0-20240319080755-7210c85fb3b9/go.mod h1:Ryxi/CXOlQZlesQzbqE08X7932Lhvcf7wCpc3ZXNvMU=
 github.com/spf13/cobra v1.8.0 h1:7aJaZx1B85qltLMc546zn58BxxfZdR/W22ej9CFoEf0=
