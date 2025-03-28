@@ -1,7 +1,17 @@
 ---
 shellPath: "/bin/bash"
-# Use this for example to add additional packages to extend telegrammy's possibilties
-initCommand: "apk add git ansible"
+# Example use of the initCommand to install additional packages and import a SSH private key
+initCommand: |
+  apk add openssh git ansible
+  mkdir ~/.ssh
+  echo "-----BEGIN OPENSSH PRIVATE KEY-----
+  ...
+  ...
+  ...
+  ...
+  ...
+  -----END OPENSSH PRIVATE KEY-----" > ~/.ssh/id_ed25519
+  chmod 400 ~/.ssh/id_ed25519
 pollInterval: 5
 
 responseJobs:
@@ -22,6 +32,21 @@ responseJobs:
   - trigger: "Reset"
     command: "rm -f /etc/telegrammy/conversation"
     message: "ChatGPT conversation reset"
+
+  # Example to execute a ansible playbook (the necessary dependencies are installed via initCommand)
+  - trigger: "Update"
+    command: |
+      git clone --quiet https://github.com/kymzky/ansible-homelab.git
+      cd ansible-homelab
+      echo "[defaults]
+      host_key_checking = False" > ansible.cfg
+      git pull --quiet
+      ansible-playbook -i inventory/prod.yaml playbooks/update.yaml > /tmp/ansible.log
+      cat /tmp/ansible.log
+    message: "Update prod:\n```\n%s```"
+    parseMode: MarkdownV2
+    escapeCharacters:
+      - "`"
 
 cronJobs:
 
