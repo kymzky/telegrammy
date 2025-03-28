@@ -7,7 +7,6 @@ import (
 	"log/slog"
 	"os"
 	"strings"
-	"telegrammy/internal/config"
 
 	"github.com/sashabaranov/go-openai"
 )
@@ -16,14 +15,14 @@ const (
 	assistant = "Assistant"
 )
 
-func GetChatGPTResponse(message string) string {
-	conversation := getConversation()
+func GetChatGPTResponse(openAiApiKey string, chatGptConversationPath string, message string) string {
+	conversation := getConversation(chatGptConversationPath)
 	userMessage := openai.ChatCompletionMessage{
 		Role:    openai.ChatMessageRoleUser,
 		Content: message,
 	}
 	conversation = append(conversation, userMessage)
-	client := openai.NewClient(config.GetOpenAiApiKey())
+	client := openai.NewClient(openAiApiKey)
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{
@@ -37,24 +36,24 @@ func GetChatGPTResponse(message string) string {
 		return msg
 	}
 	response := resp.Choices[0].Message.Content
-	appendToConversationFile([]openai.ChatCompletionMessage{userMessage, {
+	appendToConversationFile(chatGptConversationPath, []openai.ChatCompletionMessage{userMessage, {
 		Role:    openai.ChatMessageRoleAssistant,
 		Content: response,
 	}})
 	return response
 }
 
-func getConversation() []openai.ChatCompletionMessage {
-	data, err := os.ReadFile(config.GetChatGptConversationPath())
+func getConversation(chatGptConversationPath string) []openai.ChatCompletionMessage {
+	data, err := os.ReadFile(chatGptConversationPath)
 	if err != nil {
 		slog.Warn("No ChatGPT conversation file found.", "err", err)
 		return nil
 	}
 
 	var conversation []openai.ChatCompletionMessage
-	lines := strings.Split(string(data), "\n")
+	lines := strings.SplitSeq(string(data), "\n")
 
-	for _, line := range lines {
+	for line := range lines {
 		if len(line) == 0 {
 			continue
 		}
@@ -69,8 +68,8 @@ func getConversation() []openai.ChatCompletionMessage {
 	return conversation
 }
 
-func appendToConversationFile(conversation []openai.ChatCompletionMessage) {
-	f, err := os.OpenFile(config.GetChatGptConversationPath(), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+func appendToConversationFile(chatGptConversationPath string, conversation []openai.ChatCompletionMessage) {
+	f, err := os.OpenFile(chatGptConversationPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		slog.Error("Unable to open/create ChatGPT conversation file.", "err", err)
 		return

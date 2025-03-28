@@ -17,38 +17,17 @@ func main() {
 
 func runApplication() error {
 	utils.InitializeLogger()
-
-	executor := utils.NewExecutor()
-	if err := executeInitCommand(executor); err != nil {
-		return err
-	}
-
+	executeInitCommand()
 	return startMainApplication()
 }
 
-func executeInitCommand(executor *utils.Executor) error {
+func executeInitCommand() {
 	initCmd := config.GetInitCommand()
 	if initCmd == "" || len(initCmd) == 0 {
-		return nil
+		return
 	}
-
-	slog.Info("Executing init command", "command", initCmd)
-
-	result, err := executor.Execute(initCmd)
-	if err != nil {
-		slog.Error("Failed to execute command", "error", err)
-		return err
-	}
-
-	if result.Stdout != "" {
-		slog.Info("Command output:", "stdout", result.Stdout)
-	}
-	if result.Stderr != "" {
-		slog.Warn("Command stderr:", "stderr", result.Stderr)
-	}
-
-	slog.Info("Command completed successfully", "cmd", initCmd)
-	return nil
+	executor := utils.NewExecutor()
+	executor.Execute(config.GetShellPath(), initCmd)
 }
 
 func startMainApplication() error {

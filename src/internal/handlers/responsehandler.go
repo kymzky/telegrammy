@@ -51,7 +51,7 @@ func getResponseMessageAndParseMode(message *tgbotapi.Message) (*string, *string
 			return response, &responseJob.ParseMode
 		}
 	}
-	chatGptResponse := utils.GetChatGPTResponse(content)
+	chatGptResponse := utils.GetChatGPTResponse(config.GetOpenAiApiKey(), config.GetChatGptConversationPath(), content)
 	html := "HTML"
 	return &chatGptResponse, &html
 }

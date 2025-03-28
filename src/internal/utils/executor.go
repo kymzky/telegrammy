@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bytes"
+	"log/slog"
 	"os/exec"
 )
 
@@ -11,68 +12,30 @@ func NewExecutor() *Executor {
 	return &Executor{}
 }
 
-func (e *Executor) Execute(command string) (*ExecutionResult, error) {
-	args := splitCommand(command)
-	if len(args) == 0 {
-		return nil, ErrEmptyCommand
-	}
+func (e *Executor) Execute(shellPath string, command string) string {
+	slog.Info("Execute command", "command", command)
 
-	cmd := exec.Command(args[0], args[1:]...)
+	cmd := exec.Command(shellPath, "-c", command)
 	cmd.Stdout = &bytes.Buffer{}
 	cmd.Stderr = &bytes.Buffer{}
 
 	err := cmd.Start()
 	if err != nil {
-		return nil, err
+		slog.Error("Error on command start", "error", err)
+		return err.Error()
 	}
 
 	err = cmd.Wait()
 	if err != nil {
-		return nil, err
+		slog.Error("Error on command wait", "error", err)
+		stderr := string(cmd.Stderr.(*bytes.Buffer).Bytes())
+		slog.Warn("Command stderr:", "stderr", stderr)
+		return stderr
 	}
 
-	stdoutBytes := cmd.Stdout.(*bytes.Buffer).Bytes()
-	stderrBytes := cmd.Stderr.(*bytes.Buffer).Bytes()
-
-	return &ExecutionResult{
-		Stdout: string(stdoutBytes),
-		Stderr: string(stderrBytes),
-		Code:   0,
-	}, nil
-}
-
-func splitCommand(command string) []string {
-	args := make([]string, 0)
-	currentArg := ""
-	inQuotes := false
-
-	for _, char := range command {
-		switch char {
-		case '"':
-			inQuotes = !inQuotes
-		case ' ', '\t':
-			if inQuotes {
-				currentArg += string(char)
-			} else if currentArg != "" {
-				args = append(args, currentArg)
-				currentArg = ""
-			}
-		default:
-			currentArg += string(char)
-		}
-	}
-
-	if currentArg != "" {
-		args = append(args, currentArg)
-	}
-
-	return args
-}
-
-type ExecutionResult struct {
-	Stdout string
-	Stderr string
-	Code   int
+	stdout := string(cmd.Stdout.(*bytes.Buffer).Bytes())
+	slog.Info("Command output:", "stdout", stdout)
+	return stdout
 }
 
 var ErrEmptyCommand = &Error{Msg: "empty command provided"}

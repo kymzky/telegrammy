@@ -11,11 +11,11 @@ telegrammy is configured using environment variables and a YAML file.
 
 ### Environment Variables
 
-| Variable                        | Description                                      |
-|---------------------------------|--------------------------------------------------|
-| `TELEGRAM_BOT_TOKEN`            | Telegram bot API token                           |
-| `TELEGRAM_CHAT_ID`              | Telegram chat ID for the bot                     |
-| `OPENAI_API_KEY`                | OpenAI API key for ChatGPT usage                 |
+| Variable             | Description                      |
+| -------------------- | -------------------------------- |
+| `TELEGRAM_BOT_TOKEN` | Telegram bot API token           |
+| `TELEGRAM_CHAT_ID`   | Telegram chat ID for the bot     |
+| `OPENAI_API_KEY`     | OpenAI API key for ChatGPT usage |
 
 ### YAML Configuration
 
@@ -26,8 +26,9 @@ their trigger mechanism:
 - `cronJobs` are executed on a schedule
 
 | Parameter                           | Description                                                                                      | Default                           |
-|-------------------------------------|--------------------------------------------------------------------------------------------------|-----------------------------------|
+| ----------------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------- |
 | `shellPath`                         | Path to the shell used for executing commands                                                    | _required_                        |
+| `initCommand`                       | Shell command executed at telegrammy startup                                                     | -                                 |
 | `pollInterval`                      | Interval in seconds for polling new messages                                                     | _required_                        |
 | `responseJobs[].trigger`            | Message that triggers the response job                                                           | _required_ (for each responseJob) |
 | `responseJobs[].message`            | Message sent by the bot                                                                          | _required_ (for each responseJob) |

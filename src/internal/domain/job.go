@@ -2,9 +2,8 @@ package domain
 
 import (
 	"fmt"
-	"log/slog"
-	"os/exec"
 	"strings"
+	"telegrammy/internal/utils"
 )
 
 type Job struct {
@@ -19,7 +18,8 @@ func (job *Job) GetMessage(shellPath string) *string {
 	if job.Command == "" {
 		message = job.Message
 	} else {
-		output := executeCommand(shellPath, job.Command)
+		executor := utils.NewExecutor()
+		output := executor.Execute(shellPath, job.Command)
 		if len(job.EscapeCharacters) > 0 {
 			output = job.escapeCharacters(output)
 		}
@@ -30,16 +30,6 @@ func (job *Job) GetMessage(shellPath string) *string {
 		}
 	}
 	return &message
-}
-
-func executeCommand(shellPath string, command string) string {
-	output, err := exec.Command(shellPath, "-c", command).CombinedOutput()
-	if err != nil {
-		msg := fmt.Sprintf("Error executing command '%s': %s\n\n%s", command, err, output)
-		slog.Error(msg)
-		return msg
-	}
-	return string(output)
 }
 
 func (job *Job) escapeCharacters(text string) string {
