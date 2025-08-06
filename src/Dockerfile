@@ -1,4 +1,4 @@
-FROM golang:1.24.5-alpine
+FROM golang:1.24.6-alpine
 # hadolint ignore=DL3018
 RUN apk add --no-cache bash tzdata
 ENV TZ=Europe/Berlin
